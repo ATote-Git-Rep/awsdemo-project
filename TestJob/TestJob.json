@@ -1,0 +1,42 @@
+{
+  "name" : "TestJob",
+  "jobMode" : "SCRIPT",
+  "description" : "",
+  "role" : "arn:aws:iam::970547374812:role/service-role/AWSGlueServiceRole-atote",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-970547374812-ap-south-1/scripts/TestJob.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--extra-py-files" : "s3://aws-glue-studio-transforms-584702181950-prod-ap-south-1/gs_common.py,s3://aws-glue-studio-transforms-584702181950-prod-ap-south-1/gs_derived.py",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-970547374812-ap-south-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--s3_path" : "s3://atote-datalake-dec2024-mum/NYC_Parquet_Data/",
+    "--TempDir" : "s3://aws-glue-assets-970547374812-ap-south-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 8,
+  "timeout" : 2880,
+  "maxCapacity" : 8.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 4,
+  "workerType" : "G.2X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "awsdemo-project",
+    "branch" : "development",
+    "folder" : "TestJob"
+  }
+}
